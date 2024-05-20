@@ -13,7 +13,10 @@
       <tr v-for="crypto in data" :key="crypto.id">
         <td>{{ crypto.name }}</td>
         <td>{{ crypto.symbol }}</td>
-        <td>{{ formatCurrency(crypto.quote.USD.price) }}</td>
+        <td :style="{ color: crypto.symbol === 'BTC' && isBitcoinPriceChanged ? 'red' : 'inherit' }">
+          {{ formatCurrency(crypto.quote.USD.price) }}
+        </td>
+
         <td>{{ crypto.circulating_supply.toLocaleString() }}</td>
         <td>{{ formatDate(crypto.last_updated) }}</td>
       </tr>
@@ -22,7 +25,9 @@
 </template>
 
 <script setup>
+import { ref, watchEffect } from 'vue';
 import { defineProps } from 'vue';
+import { useLocalStorage } from '@vueuse/core';
 
 const props = defineProps({
   data: {
@@ -30,6 +35,8 @@ const props = defineProps({
     required: true,
   },
 });
+
+const isBitcoinPriceChanged = ref(false);
 
 const formatDate = (dateString) => {
   const options = {
@@ -49,6 +56,21 @@ const formatCurrency = (value) => {
     currency: 'USD',
   }).format(value);
 };
+
+watchEffect(() => {
+  const bitcoin = props.data.find(crypto => crypto.symbol === 'BTC');
+
+  if (bitcoin) {
+    const currentBitcoinPrice = bitcoin.quote.USD.price;
+    const previousBitcoinPrice = parseFloat(useLocalStorage('bitcoinPrice'));
+
+    if (!isNaN(previousBitcoinPrice) && currentBitcoinPrice !== previousBitcoinPrice) {
+      isBitcoinPriceChanged.value = true;
+    }
+
+    useLocalStorage('bitcoinPrice', currentBitcoinPrice.toString());
+  }
+});
 </script>
 
 <style scoped>
