@@ -4,15 +4,5 @@
       "src": "nuxt.config.js",
       "use": "@vercel/node"
     }
-  ],
-  "routes": [
-    {
-      "src": "/robots.txt",
-      "dest": "/public/robots.txt"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/.output/server/index.mjs"
-    }
   ]
 }
