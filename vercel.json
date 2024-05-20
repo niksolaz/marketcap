@@ -1,0 +1,14 @@
+{
+  "builds": [
+    {
+      "src": "nuxt.config.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/.output/server/index.mjs"
+    }
+  ]
+}
