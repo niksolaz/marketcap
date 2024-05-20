@@ -14,6 +14,18 @@
 import { ref, watchEffect } from 'vue';
 import { useNuxtApp } from '#app';
 import AppTable from '~/components/AppTable.vue';
+import { useHead } from '@vueuse/head';
+
+useHead({
+  title: 'Market Cap Data',
+  meta: [
+    { name: 'description', content: 'Get the latest cryptocurrency market cap data' },
+    { property: 'og:title', content: 'Market Cap Data' },
+    { property: 'og:description', content: 'Get the latest cryptocurrency market cap data' },
+    { property: 'og:type', content: 'website' },
+  ]
+});
+
 
 const nuxtApp = useNuxtApp();
 const marketCap = ref(null);
