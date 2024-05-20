@@ -43,7 +43,6 @@ const formatCurrency = (value) => {
 async function getData() {
   if (nuxtApp.$marketCap) {
     marketCap.value = nuxtApp.$marketCap;
-    
     if (!nuxtApp.$marketCap.data.length) {
       error.value = 'No data available';
     }

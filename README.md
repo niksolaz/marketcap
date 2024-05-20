@@ -19,5 +19,8 @@
  - aggiingere un file robots.txt nel folder public
  - aggiungere i metatag SEO
 
+ # Modifica colore per cambio valore Bitcoin
+ memorizzo il dato in localSttorage bitcoinPrice da utilizzare come raffronto con il nuovo valore ogni volta che rivisto la pagina
+
  # vercel 
 visit link on [vercel](https://marketcap-eta.vercel.app/)

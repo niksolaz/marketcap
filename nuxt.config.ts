@@ -16,6 +16,14 @@ export default defineNuxtConfig({
   imports: {
     dirs: ['composables/*.{ts,js}']
   },
+  /*
+  nitro: {
+    routeRules: {
+      '/': { swr: 3600, appMiddleware: 'geo' },
+      // Add other routes if needed
+    }
+  },
+  */
   build: {
     transpile: []
   }
