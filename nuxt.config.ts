@@ -16,14 +16,19 @@ export default defineNuxtConfig({
   imports: {
     dirs: ['composables/*.{ts,js}']
   },
-  /*
   nitro: {
+    output: {
+      server: '.output/server'
+    },
+    preset: 'vercel'
+    /*
     routeRules: {
       '/': { swr: 3600, appMiddleware: 'geo' },
       // Add other routes if needed
     }
+    */
   },
-  */
+  
   build: {
     transpile: []
   }
